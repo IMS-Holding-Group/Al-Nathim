@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="author" content="مشروع الناظم">
+    <meta name="description" content="الناظم - مساعد ذكي للإجابة على أسئلة الطلاب من لوائح جامعة تبوك">
+    <title>الناظم | الصفحة الرئيسية</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="page-home">
+    <header class="site-header" id="siteHeader">
+        <div class="header-inner">
+            <a href="/" class="header-brand">
+                <img src="{{ url_for('serve_assets', filename='images/logo.jpg') }}" alt="شعار الناظم" class="header-logo">
+                <span class="header-brand-name">الناظم</span>
+            </a>
+            <button type="button" class="nav-toggle" id="navToggle" aria-label="فتح القائمة">
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="site-nav" id="siteNav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="#home" class="nav-link">الرئيسية</a></li>
+                    <li class="nav-item"><a href="#idea" class="nav-link">الفكرة</a></li>
+                    <li class="nav-item"><a href="#features" class="nav-link">المميزات</a></li>
+                    {% if current_user %}
+                    <li class="nav-item"><a href="{{ url_for('chat') }}" class="nav-link">محادثاتي</a></li>
+                    <li class="nav-item"><a href="{{ url_for('auth.logout') }}" class="nav-link">خروج</a></li>
+                    <li class="nav-item"><a href="{{ url_for('chat') }}" class="nav-cta">ابدأ المحادثة</a></li>
+                    {% else %}
+                    <li class="nav-item"><a href="{{ url_for('auth.login') }}" class="nav-link">دخول</a></li>
+                    <li class="nav-item"><a href="{{ url_for('auth.register') }}" class="nav-cta">إنشاء حساب</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-media" aria-hidden="true">
+            <img src="{{ url_for('serve_assets', filename='images/logo.jpg') }}" alt="" class="hero-logo-bg">
+            <div class="hero-shade"></div>
+        </div>
+        <div class="hero-content">
+            <p class="hero-brand">الناظم</p>
+            <div class="brand-divider hero-divider">
+                <span class="divider-line"></span>
+                <span class="divider-diamond"></span>
+                <span class="divider-line"></span>
+            </div>
+            <h1 class="hero-title">إجابات موثوقة من لوائح جامعة تبوك</h1>
+            <p class="hero-text">اسأل بالعربية الفصحى واحصل على جواب مبني على النصوص الرسمية مع ذكر المصدر.</p>
+            <div class="hero-actions">
+                {% if current_user %}
+                <a href="{{ url_for('chat') }}" class="btn-primary">ابدأ المحادثة</a>
+                {% else %}
+                <a href="{{ url_for('auth.register') }}" class="btn-primary">أنشئ حسابك مجانًا</a>
+                <a href="{{ url_for('auth.login') }}" class="btn-secondary">تسجيل الدخول</a>
+                {% endif %}
+                <a href="#idea" class="btn-secondary">تعرّف على الفكرة</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-idea" id="idea">
+        <div class="section-inner">
+            <p class="section-eyebrow">الفكرة</p>
+            <h2 class="section-title">لماذا وُجد الناظم؟</h2>
+            <p class="section-lead">اللوائح الأكاديمية طويلة وصياغتها قانونية، فيصعب على الطالب إيجاد المادة المناسبة بسرعة ودقة.</p>
+            <div class="idea-flow">
+                <div class="idea-step">
+                    <span class="idea-num">01</span>
+                    <h3 class="idea-step-title">استرجاع من اللوائح</h3>
+                    <p class="idea-step-text">يبحث النظام في مقاطع لائحة الدراسة والاختبارات ودليل الطالب الأكاديمي «مسيرتي».</p>
+                </div>
+                <div class="idea-step">
+                    <span class="idea-num">02</span>
+                    <h3 class="idea-step-title">توليد إجابة منضبطة</h3>
+                    <p class="idea-step-text">يُرسل المقطع الأنسب إلى نموذج ذكاء اصطناعي مع تعليمات صارمة بعدم التأليف خارج النص.</p>
+                </div>
+                <div class="idea-step">
+                    <span class="idea-num">03</span>
+                    <h3 class="idea-step-title">مصدر واضح</h3>
+                    <p class="idea-step-text">تظهر الإجابة مع اسم اللائحة ورقم المادة أو العنوان ليتحقق الطالب بنفسه.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-features" id="features">
+        <div class="section-inner">
+            <p class="section-eyebrow">المميزات</p>
+            <h2 class="section-title">ما يقدّمه الناظم للطالب</h2>
+            <p class="section-lead">واجهة رسمية هادئة، وإجابات مربوطة بالنصوص المعتمدة، مع حساب شخصي لحفظ المحادثات.</p>
+            <ul class="features-list">
+                <li class="feature-row">
+                    <span class="feature-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" class="icon-svg"><path fill="currentColor" d="M6.5 3.5A2.5 2.5 0 0 0 4 6v12.2c0 .9.7 1.6 1.6 1.6H19a1 1 0 0 0 0-2H6.5a.5.5 0 0 1 0-1H19V4.5a1 1 0 0 0-1-1H6.5zm2 3h8v1.8h-8V6.5zm0 3.5h8V11h-8V10z"/></svg>
+                    </span>
+                    <div class="feature-body">
+                        <h3 class="feature-title">مبني على لوائح رسمية</h3>
+                        <p class="feature-text">يعتمد على لائحة الدراسة والاختبارات ودليل الطالب الأكاديمي بعد تقسيمهما إلى مقاطع منظمة.</p>
+                    </div>
+                </li>
+                <li class="feature-row">
+                    <span class="feature-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" class="icon-svg"><path fill="currentColor" d="M15.5 14h-.8l-.3-.3A6.5 6.5 0 1 0 14 15.5l.3.3v.8l5 5 1.5-1.5-5-5zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14z"/></svg>
+                    </span>
+                    <div class="feature-body">
+                        <h3 class="feature-title">بحث نصي عربي ذكي</h3>
+                        <p class="feature-text">يطبع السؤال والنصوص ويحسب درجات التطابق ليعيد المقطع الأقرب لمعنى السؤال.</p>
+                    </div>
+                </li>
+                <li class="feature-row">
+                    <span class="feature-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" class="icon-svg"><path fill="currentColor" d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 15h-2v-2h2zm0-4h-2V7h2z"/></svg>
+                    </span>
+                    <div class="feature-body">
+                        <h3 class="feature-title">إجابة مع ذكر المصدر</h3>
+                        <p class="feature-text">كل رد يعرض اسم اللائحة والعنوان أو رقم المادة، مع إمكانية الاطلاع على نص المقطع المسترجع.</p>
+                    </div>
+                </li>
+                <li class="feature-row">
+                    <span class="feature-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" class="icon-svg"><path fill="currentColor" d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0 2c-3.3 0-6 1.7-6 3.8V20h12v-2.2C18 15.7 15.3 14 12 14z"/></svg>
+                    </span>
+                    <div class="feature-body">
+                        <h3 class="feature-title">حساب شخصي وحفظ المحادثات</h3>
+                        <p class="feature-text">أنشئ حسابًا لتحفظ أسئلتك وإجابات الناظم، وتعود إليها أو تحذفها متى شئت.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="section section-cta" id="start">
+        <div class="section-inner cta-inner">
+            <h2 class="section-title">جاهز لتسأل الناظم؟</h2>
+            <p class="section-lead">أنشئ حسابًا أو سجّل دخولك ثم انتقل إلى المحادثة واطرح سؤالك حول اللوائح.</p>
+            {% if current_user %}
+            <a href="{{ url_for('chat') }}" class="btn-primary">الدخول إلى المحادثة</a>
+            {% else %}
+            <div class="hero-actions">
+                <a href="{{ url_for('auth.register') }}" class="btn-primary">إنشاء حساب</a>
+                <a href="{{ url_for('auth.login') }}" class="btn-secondary">تسجيل الدخول</a>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+
+    {% include "partials/footer.html" %}
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

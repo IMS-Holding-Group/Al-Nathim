@@ -1,0 +1,30 @@
+# البيئة والأسرار
+.env
+venv/
+.venv/
+env/
+
+# بايثون
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# قاعدة البيانات المُولَّدة محليًا
+database/db.sqlite3
+database/*.sqlite3-journal
+
+# نظام التشغيل والمحرر
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# سجلات وأدوات محلية
+*.log
+.coverage
+htmlcov/

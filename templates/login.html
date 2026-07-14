@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="author" content="مشروع الناظم">
+    <meta name="description" content="تسجيل الدخول إلى الناظم">
+    <title>الناظم | تسجيل الدخول</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="page-auth">
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="{{ url_for('index') }}" class="header-brand">
+                <img src="{{ url_for('serve_assets', filename='images/logo.jpg') }}" alt="شعار الناظم" class="header-logo">
+                <span class="header-brand-name">الناظم</span>
+            </a>
+            <a href="{{ url_for('auth.register') }}" class="nav-back">إنشاء حساب</a>
+        </div>
+    </header>
+
+    <section class="auth-section">
+        <div class="auth-panel">
+            <h1 class="auth-title">تسجيل الدخول</h1>
+            <p class="auth-lead">ادخل إلى حسابك لحفظ محادثاتك والرجوع إليها لاحقًا.</p>
+
+            {% if error %}
+            <div class="auth-error"><p>{{ error }}</p></div>
+            {% endif %}
+
+            <form class="auth-form" method="post" action="{{ url_for('auth.login') }}">
+                <input type="hidden" name="next" value="{{ next_url }}">
+                <label class="auth-label" for="email">البريد الإلكتروني</label>
+                <input class="auth-input" type="email" id="email" name="email" required autocomplete="email">
+
+                <label class="auth-label" for="password">كلمة المرور</label>
+                <input class="auth-input" type="password" id="password" name="password" required autocomplete="current-password">
+
+                <button type="submit" class="btn-primary auth-submit">دخول</button>
+            </form>
+
+            <p class="auth-switch">ليس لديك حساب؟ <a href="{{ url_for('auth.register') }}">أنشئ حسابًا جديدًا</a></p>
+        </div>
+    </section>
+
+    {% include "partials/footer.html" %}
+</body>
+</html>

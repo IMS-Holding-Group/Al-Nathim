@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="author" content="مشروع الناظم">
+    <meta name="description" content="إنشاء حساب في الناظم">
+    <title>الناظم | إنشاء حساب</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="page-auth">
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="{{ url_for('index') }}" class="header-brand">
+                <img src="{{ url_for('serve_assets', filename='images/logo.jpg') }}" alt="شعار الناظم" class="header-logo">
+                <span class="header-brand-name">الناظم</span>
+            </a>
+            <a href="{{ url_for('auth.login') }}" class="nav-back">تسجيل الدخول</a>
+        </div>
+    </header>
+
+    <section class="auth-section">
+        <div class="auth-panel">
+            <h1 class="auth-title">إنشاء حساب</h1>
+            <p class="auth-lead">سجّل لفتح المحادثة وحفظ أسئلتك وإجابات الناظم.</p>
+
+            {% if error %}
+            <div class="auth-error"><p>{{ error }}</p></div>
+            {% endif %}
+
+            <form class="auth-form" method="post" action="{{ url_for('auth.register') }}">
+                <label class="auth-label" for="full_name">الاسم الكامل</label>
+                <input class="auth-input" type="text" id="full_name" name="full_name" required autocomplete="name">
+
+                <label class="auth-label" for="email">البريد الإلكتروني</label>
+                <input class="auth-input" type="email" id="email" name="email" required autocomplete="email">
+
+                <label class="auth-label" for="password">كلمة المرور</label>
+                <input class="auth-input" type="password" id="password" name="password" required autocomplete="new-password" minlength="6">
+
+                <label class="auth-label" for="password_confirm">تأكيد كلمة المرور</label>
+                <input class="auth-input" type="password" id="password_confirm" name="password_confirm" required autocomplete="new-password" minlength="6">
+
+                <button type="submit" class="btn-primary auth-submit">إنشاء الحساب</button>
+            </form>
+
+            <p class="auth-switch">لديك حساب؟ <a href="{{ url_for('auth.login') }}">سجّل الدخول</a></p>
+        </div>
+    </section>
+
+    {% include "partials/footer.html" %}
+</body>
+</html>

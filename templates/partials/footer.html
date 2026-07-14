@@ -1,0 +1,50 @@
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-col footer-brand-col">
+            <a href="{{ url_for('index') }}" class="footer-brand">
+                <img src="{{ url_for('serve_assets', filename='images/logo.jpg') }}" alt="شعار الناظم" class="footer-logo">
+                <span class="footer-brand-name">الناظم</span>
+            </a>
+            <p class="footer-about">مساعد أكاديمي ذكي يجيب على أسئلة طلاب جامعة تبوك من اللوائح الرسمية مع ذكر المصدر.</p>
+        </div>
+
+        <div class="footer-col">
+            <h3 class="footer-heading">روابط سريعة</h3>
+            <ul class="footer-links">
+                <li><a href="{{ url_for('index') }}#home">الرئيسية</a></li>
+                <li><a href="{{ url_for('index') }}#idea">الفكرة</a></li>
+                <li><a href="{{ url_for('index') }}#features">المميزات</a></li>
+                <li><a href="{{ url_for('chat') }}">المحادثة</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h3 class="footer-heading">الحساب</h3>
+            <ul class="footer-links">
+                {% if current_user %}
+                <li><a href="{{ url_for('chat') }}">محادثاتي</a></li>
+                <li><a href="{{ url_for('auth.logout') }}">تسجيل الخروج</a></li>
+                {% else %}
+                <li><a href="{{ url_for('auth.login') }}">تسجيل الدخول</a></li>
+                <li><a href="{{ url_for('auth.register') }}">إنشاء حساب</a></li>
+                {% endif %}
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h3 class="footer-heading">معلومات</h3>
+            <ul class="footer-links">
+                <li><span>جامعة تبوك</span></li>
+                <li><span>لائحة الدراسة والاختبارات</span></li>
+                <li><span>دليل الطالب الأكاديمي «مسيرتي»</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>الناظم — مشروع تخرج لمساعدة طلاب جامعة تبوك</p>
+        {% if current_user %}
+        <p class="footer-user">مرحبًا، {{ current_user.full_name }}</p>
+        {% endif %}
+    </div>
+</footer>

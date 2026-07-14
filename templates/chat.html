@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="author" content="مشروع الناظم">
+    <meta name="description" content="محادثة الناظم - اسأل عن لوائح جامعة تبوك">
+    <title>الناظم | المحادثة</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="page-chat">
+    <header class="site-header chat-topbar">
+        <div class="header-inner">
+            <a href="{{ url_for('index') }}" class="header-brand">
+                <img src="{{ url_for('serve_assets', filename='images/logo.jpg') }}" alt="شعار الناظم" class="header-logo">
+                <span class="header-brand-name">الناظم</span>
+            </a>
+            <div class="chat-header-actions">
+                <span class="chat-user-name">{{ current_user.full_name }}</span>
+                <button type="button" class="sidebar-toggle" id="sidebarToggle">المحادثات</button>
+                <a href="{{ url_for('auth.logout') }}" class="nav-back">خروج</a>
+                <a href="{{ url_for('index') }}" class="nav-back">الرئيسية</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="app-shell chat-shell">
+        <aside class="chat-sidebar" id="chatSidebar">
+            <div class="sidebar-toolbar">
+                <button type="button" class="btn-primary sidebar-new" id="newChatBtn">محادثة جديدة</button>
+            </div>
+            <ul class="conversation-list" id="conversationList"></ul>
+            <p class="sidebar-empty" id="sidebarEmpty">لا توجد محادثات محفوظة بعد.</p>
+        </aside>
+
+        <div class="app-container chat-workspace">
+            <main class="chat-main">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="welcome-message">
+                        <p class="welcome-text">مرحبًا {{ current_user.full_name }}. اكتب سؤالك حول لوائح جامعة تبوك، وستُحفظ المحادثة تلقائيًا في حسابك.</p>
+                    </div>
+                </div>
+
+                <form class="chat-form" id="chatForm">
+                    <div class="input-group">
+                        <input type="text" id="questionInput" class="question-input" placeholder="اكتب سؤالك عن اللوائح..." autocomplete="off" required>
+                        <button type="submit" class="send-button" id="sendButton">
+                            <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                <path fill="currentColor" d="M3.4 20.6L20.85 12.7c.7-.32.7-1.31 0-1.63L3.4 3.17c-.66-.3-1.39.28-1.22.98L3.8 10.4c.08.34.35.59.7.64l9.35 1.34c.2.03.2.32 0 .35L4.5 13.97c-.35.05-.62.3-.7.64l-1.62 6.25c-.17.7.56 1.28 1.22.98z"/>
+                            </svg>
+                            <span>إرسال</span>
+                        </button>
+                    </div>
+                </form>
+            </main>
+        </div>
+    </section>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
