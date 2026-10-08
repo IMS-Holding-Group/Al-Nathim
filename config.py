@@ -31,4 +31,4 @@ OPENROUTER_SITE_URL = os.getenv("OPENROUTER_SITE_URL", "http://localhost:5000")
 OPENROUTER_APP_NAME = os.getenv("OPENROUTER_APP_NAME", "Al-Nathim")
 
 # مفتاح جلسات Flask
-SECRET_KEY = os.getenv("SECRET_KEY", "al-nathim-dev-secret-change-me")
+SECRET_KEY = os.getenv("SECRET_KEY", "")
